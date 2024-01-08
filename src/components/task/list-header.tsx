@@ -9,16 +9,19 @@ interface ListHeaderProps {
 }
 // Componente ListHeader para renderizar um cabeçalho com botões de status
 const ListHeader: React.FC<ListHeaderProps> = ({ status, onClick }) => {
-  const { setTasks } = useTask()
+  const { tasks, setTasks } = useTask()
   // Define os status possíveis
   const statuses = ['All', 'Active', 'Completed']
 
-  // Função para remover todas tarefas
-  const handleClear = () => {
-    localStorage.clear()
-    setTasks([])
-    // Exibe um toast para indicar a remoção
-    toast('All Tasks Removed', { icon: '🔴' })
+  const handleClearCompleted = () => {
+    const updatedTasks = tasks.filter((task) => task.status !== 'Completed')
+
+    // Atualiza as tarefas no local storage ou contexto
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks))
+    setTasks(updatedTasks)
+
+    // Exibe um toast para indicar a remoção das tarefas concluídas
+    toast('Completed Tasks Removed', { icon: '🔴' })
   }
   return (
     <div className="relative mx-auto flex  items-center shadow-md dark:shadow-md">
@@ -39,7 +42,7 @@ const ListHeader: React.FC<ListHeaderProps> = ({ status, onClick }) => {
       ))}
       {/*  botão para remover todas tarefas */}
       <Button
-        onClick={() => handleClear()} // Dispara a função onClick ao clicar no botão
+        onClick={() => handleClearCompleted()} // Dispara a função onClick ao clicar no botão
         className={
           'px-3 py-3 text-lg hover:text-amber-300 md:w-32 md:px-6 hover:dark:text-white '
         }
