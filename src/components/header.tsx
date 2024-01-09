@@ -33,7 +33,7 @@ export function IntroHeader({ children }: IntroHeaderProps) {
           FrontEnd Mentor
         </IconLink>
         <IconLink
-          href={'https://github.com/barcaca/testimonials-grid-section-main'}
+          href={'https://github.com/barcaca/todo-app-list'}
           icon={GitHubIcon}
         >
           GitHub
