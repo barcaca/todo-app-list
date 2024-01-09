@@ -20,7 +20,7 @@ const monaSans = localFont({
 })
 
 export const metadata: Metadata = {
-  authors: [{ name: 'Luan Barcaça', url: 'https://cretu.dev' }],
+  authors: [{ name: 'Luan Barcaça', url: '' }],
   category: 'design',
   creator: 'Luan Barcaça',
   title: 'Todo App',
